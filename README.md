@@ -2,15 +2,24 @@
 
 An intelligent content recommendation platform powered by deep learning that provides personalized movie and music recommendations using SASRec (Self-Attentive Sequential Recommendation) model and Spotify API integration.
 
-![Project Banner](https://via.placeholder.com/1200x300/1a1a2e/00d4ff?text=AI+Content+Recommendation+System)
-
 ## 🎯 Project Overview
 
-This project implements a state-of-the-art recommendation system that combines:
-- **Movie Recommendations**: Sequential recommendation using SASRec model trained on MovieLens dataset
+This project represents a comprehensive implementation of a modern recommendation system, leveraging the **MovieLens 20M dataset** containing over 20 million ratings and 27,000 movies. We've made significant progress in building a production-ready system that combines:
+
+- **Movie Recommendations**: Sequential recommendation using **SASRec (Self-Attentive Sequential Recommendation)** model trained on MovieLens 20M dataset
 - **Music Recommendations**: Genre-based matching using Spotify API
-- **Real-time TMDB Integration**: 100% success rate for movie posters and trailers
-- **Modern Web Interface**: React + Vite frontend with stunning animations
+- **Real-time TMDB Integration**: Achieved **100% success rate** for movie posters and trailers through aggressive optimization
+- **Modern Web Interface**: React + Vite frontend with stunning animations and responsive design
+
+### Project Achievements
+
+Throughout this project, we've accomplished:
+- ✅ Successfully trained SASRec model on 20M+ movie ratings
+- ✅ Fixed 5,242 inverted movie names in the dataset for better TMDB matching
+- ✅ Implemented aggressive retry logic achieving 100% TMDB API success rate
+- ✅ Built a full-stack application with Flask backend and React frontend
+- ✅ Integrated multiple APIs (TMDB, Spotify) with robust error handling
+- ✅ Optimized performance with connection pooling and caching mechanisms
 
 ### Key Achievement
 ✅ **100% TMDB Success Rate** - Every movie displays real posters and trailers through aggressive retry logic and connection pooling
@@ -140,8 +149,8 @@ This project implements a state-of-the-art recommendation system that combines:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/ai-content-recommendation-system.git
-cd ai-content-recommendation-system
+git clone https://github.com/Divyakush2006/Guilded-Guild.git
+cd Guilded-Guild
 ```
 
 ### 2. Backend Setup
@@ -253,11 +262,12 @@ python train_sasrec.py --epochs 20 --batch_size 128 --lr 0.001
 ```
 
 **Training Details:**
-- **Dataset**: MovieLens 25M (62,423 movies, 25M ratings)
+- **Dataset**: MovieLens 20M (27,278 movies, 20M ratings, 138,493 users)
 - **Optimizer**: Adam (lr=0.001)
 - **Loss Function**: Binary Cross-Entropy
 - **Training Time**: ~2 hours on GPU
 - **Final Model**: Epoch 20 checkpoint
+- **Model Architecture**: SASRec with self-attention mechanism
 
 **Performance Metrics:**
 - **AUC-ROC**: 0.85
@@ -558,11 +568,7 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
 
 ## 🙏 Acknowledgments
 
@@ -581,10 +587,14 @@ For questions or support, please open an issue on GitHub.
 
 ## 📈 Project Statistics
 
-- **Total Movies**: 62,423
+- **Dataset**: MovieLens 20M
+- **Total Movies**: 27,278
+- **Total Ratings**: 20 million+
+- **Total Users**: 138,493
 - **Movies Fixed**: 5,242 (inverted names)
 - **TMDB Success Rate**: 100%
-- **Model Training Time**: ~2 hours
+- **Model**: SASRec (Self-Attentive Sequential Recommendation)
+- **Model Training Time**: ~2 hours (GPU)
 - **Lines of Code**: ~5,000+
 - **API Integrations**: 2 (TMDB, Spotify)
 
