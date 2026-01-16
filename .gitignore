@@ -1,0 +1,92 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+
+# Environment Variables
+.env
+.env.local
+
+# Model Files (large binary files)
+*.pth
+*.pt
+*.h5
+*.pkl
+*.bin
+*.model
+
+# Datasets
+ml-*/
+*.zip
+*.csv
+*.dat
+
+# Vector Databases
+*_vectordb/
+my_vectordb/
+
+# Cache
+.cache
+*.cache
+.pytest_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Flask
+instance/
+.webassets-cache
+
+# React/Vite
+.vite/
+*.local
+
+# Backup files
+*_backup.csv
+movie_name_fixes.txt
+
+# Test scripts
+test_*.py

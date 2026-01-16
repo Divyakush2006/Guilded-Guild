@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Music Recommendations - Spotify Powered</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .nav {
+            margin-bottom: 20px;
+        }
+
+        .nav a {
+            color: #03dac6;
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #bb86fc;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 12px;
+            background: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        input[type="text"]::placeholder {
+            color: #888;
+        }
+
+        button {
+            background-color: #1DB954;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            background-color: #1ed760;
+            transform: scale(1.02);
+        }
+
+        .results-section {
+            margin-top: 30px;
+        }
+
+        .result-box {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #1DB954;
+        }
+
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .track-item {
+            padding: 15px;
+            background: #2a2a2a;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .track-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(29, 185, 84, 0.3);
+        }
+
+        .track-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .track-artwork {
+            width: 64px;
+            height: 64px;
+            border-radius: 6px;
+            margin-right: 15px;
+            object-fit: cover;
+            background: #444;
+        }
+
+        .track-info {
+            flex: 1;
+        }
+
+        .track-title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .track-artist {
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+
+        .track-album {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        .platform-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .platform-btn {
+            flex: 1;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: transform 0.1s;
+        }
+
+        .platform-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .spotify-btn {
+            background: #1DB954;
+            color: white;
+        }
+
+        .apple-btn {
+            background: #FC3C44;
+            color: white;
+        }
+
+        h1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .debug {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 20px;
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+
+        .error {
+            background: #cf6679;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .spotify-badge {
+            background: #1DB954;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .setup-notice {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .setup-notice h3 {
+            color: #ff9800;
+            margin-top: 0;
+        }
+
+        .setup-notice code {
+            background: #1e1e1e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #03dac6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <a href="/">🎬 Movies</a>
+            <a href="/music" style="font-weight: bold;">🎵 Music</a>
+        </div>
+
+        <h1>🎵 Similar Songs Finder <span class="spotify-badge">Powered by Spotify</span></h1>
+        <p style="color: #b3b3b3;">Find similar songs for both Hindi and English music - Real songs from Spotify!</p>
+
+        {% if not spotify_enabled %}
+        <div class="setup-notice">
+            <h3>⚠️ Spotify Setup Required</h3>
+            <p>To get real song recommendations, you need to configure Spotify API:</p>
+            <ol>
+                <li>Go to <a href="https://developer.spotify.com/dashboard" target="_blank"
+                        style="color: #1DB954;">developer.spotify.com/dashboard</a></li>
+                <li>Create an app (FREE)</li>
+                <li>Run: <code>python setup_spotify.py</code></li>
+            </ol>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">❌ {{ error }}</div>
+        {% endif %}
+
+        <form action="/recommend_music" method="POST">
+            <div class="input-group">
+                <label>1. What song are you listening to right now?</label>
+                <input type="text" name="current_track"
+                    placeholder="e.g. Sheila Ki Jawani, Shape of You, Kesariya, Blinding Lights"
+                    value="{{ recs.input_track if recs else '' }}" required>
+                <p class="hint">💡 Enter any Hindi or English song name</p>
+            </div>
+
+            <div class="input-group">
+                <label>2. What's your listening history? (Comma separated)</label>
+                <input type="text" name="history" placeholder="e.g. Tujhko Jo Paaya, Allah Duhai Hai, Kesariya"
+                    value="{{ recs.input_history|join(', ') if recs and recs.input_history else '' }}">
+                <p class="hint">💡 Add more songs to get better, context-aware recommendations</p>
+            </div>
+
+            <button type="submit">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                </svg>
+                Find Similar Songs
+            </button>
+        </form>
+
+        {% if recs and recs.similar_tracks %}
+        <div class="results-section">
+            <div class="result-box">
+                <h3>🎧 Similar Songs to "{{ recs.input_track }}"</h3>
+                <div class="tracks-grid">
+                    {% for track in recs.similar_tracks %}
+                    <div class="track-item">
+                        <div class="track-header">
+                            {% if track.artwork_url %}
+                            <img src="{{ track.artwork_url }}" alt="Album Art" class="track-artwork">
+                            {% else %}
+                            <div class="track-artwork"
+                                style="display: flex; align-items: center; justify-content: center; font-size: 24px;">🎵
+                            </div>
+                            {% endif %}
+                            <div class="track-info">
+                                <div class="track-title">{{ track.title }}</div>
+                                <div class="track-artist">{{ track.artist }}</div>
+                                <div class="track-album">{{ track.album }}</div>
+                            </div>
+                        </div>
+                        <div class="platform-buttons">
+                            <a href="{{ track.spotify_url }}" target="_blank" class="platform-btn spotify-btn"
+                                style="width: 100%;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                                </svg>
+                                Play on Spotify
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="debug">
+            <strong>System Info:</strong><br>
+            {% for log in recs.debug_info %}
+            > {{ log }}<br>
+            {% endfor %}
+        </div>
+        {% elif recs %}
+        <div class="results-section">
+            <div class="result-box">
+                <h3>😕 No similar songs found</h3>
+                <p>We couldn't find "{{ recs.input_track }}" on Spotify. Try:</p>
+                <ul>
+                    <li>Check the spelling of the song name</li>
+                    <li>Try a more popular song</li>
+                    <li>Include the artist name (e.g., "Shape of You Ed Sheeran")</li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

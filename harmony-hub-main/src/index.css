@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Netflix Theme (default for movies) */
+    --background: 0 0% 8%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 357 83% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 357 83% 47%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 357 83% 47%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --netflix-red: 357 83% 47%;
+    --spotify-green: 141 73% 42%;
+    --card-hover: 0 0% 16%;
+    --gradient-netflix: linear-gradient(to bottom, hsl(0 0% 8% / 0), hsl(0 0% 8%));
+    --gradient-spotify: linear-gradient(135deg, hsl(0 0% 7%), hsl(0 0% 12%));
+    --hero-overlay: linear-gradient(to right, hsl(0 0% 8% / 0.9), hsl(0 0% 8% / 0.3));
+  }
+
+  /* Spotify theme variant */
+  .spotify-theme {
+    --background: 0 0% 7%;
+    --card: 0 0% 16%;
+    --primary: 141 73% 42%;
+    --accent: 141 73% 42%;
+    --ring: 141 73% 42%;
+    --card-hover: 0 0% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-shadow-hero {
+    text-shadow: 2px 2px 8px hsl(0 0% 0% / 0.8);
+  }
+
+  .card-glow-netflix {
+    box-shadow: 0 0 20px hsl(357 83% 47% / 0.3);
+  }
+
+  .card-glow-spotify {
+    box-shadow: 0 0 20px hsl(141 73% 42% / 0.3);
+  }
+
+  .gradient-mask {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+}

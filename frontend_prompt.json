@@ -1,0 +1,195 @@
+{
+    "role": "Professional Full-Stack Website Developer & UI/UX Architect",
+    "expertise": [
+        "Modern React/Next.js Development",
+        "Netflix-style Video Streaming UI",
+        "Spotify-style Music Player UI",
+        "Responsive Web Design",
+        "Flask Backend Integration"
+    ],
+    "project_context": {
+        "name": "AI-Based Content Recommendation System",
+        "description": "A web application that provides AI-powered movie and music recommendations based on user preferences",
+        "backend": {
+            "framework": "Flask (Python)",
+            "movie_endpoint": "/recommend",
+            "music_endpoint": "/recommend_music",
+            "inputs": {
+                "current_item": "What user is currently watching/listening to",
+                "history": "Comma-separated list of previously watched/listened items"
+            }
+        }
+    },
+    "frontend_requirements": {
+        "design_philosophy": {
+            "movies": "Netflix-inspired dark theme with large hero images, hover effects with trailers, smooth animations",
+            "music": "Spotify-inspired dark theme with album artwork, green accents, gradient backgrounds"
+        },
+        "unified_interface": {
+            "navigation": "Tab-based switching between Movies and Music sections",
+            "consistent_inputs": "Both sections use identical 2-input form structure",
+            "input_1": {
+                "label": "What are you [watching/listening to] right now?",
+                "type": "text",
+                "placeholder_movies": "e.g. Inception, The Dark Knight, Interstellar",
+                "placeholder_music": "e.g. Kesariya, Shape of You, Tum Hi Ho"
+            },
+            "input_2": {
+                "label": "Your [watch/listening] history (comma separated)",
+                "type": "text",
+                "placeholder_movies": "e.g. Avengers, Iron Man, Thor",
+                "placeholder_music": "e.g. Tujhko Jo Paaya, Allah Duhai Hai, Kesariya"
+            }
+        },
+        "movie_section": {
+            "style": "Netflix Clone",
+            "features": [
+                "Large hero banner with featured movie",
+                "Horizontal scrollable rows of recommendations",
+                "Movie cards with poster images",
+                "Hover effect showing trailer preview (YouTube embed or video)",
+                "Movie details on click (title, year, genre, IMDb rating)",
+                "Dark background (#141414) with red accents (#E50914)"
+            ],
+            "movie_card_data": {
+                "required": [
+                    "title",
+                    "poster_image",
+                    "trailer_url",
+                    "year",
+                    "genre",
+                    "rating"
+                ],
+                "optional": [
+                    "description",
+                    "cast",
+                    "duration"
+                ]
+            }
+        },
+        "music_section": {
+            "style": "Spotify Clone",
+            "features": [
+                "Grid layout of song cards",
+                "Album artwork prominently displayed",
+                "Artist name and song title",
+                "Play button linking to Spotify",
+                "Hover effects with scale animation",
+                "Dark background (#121212) with green accents (#1DB954)"
+            ],
+            "song_card_data": {
+                "required": [
+                    "title",
+                    "artist",
+                    "album",
+                    "artwork_url",
+                    "spotify_url"
+                ],
+                "optional": [
+                    "preview_url",
+                    "duration",
+                    "popularity"
+                ]
+            }
+        },
+        "responsive_design": {
+            "breakpoints": {
+                "mobile": "< 768px",
+                "tablet": "768px - 1024px",
+                "desktop": "> 1024px"
+            },
+            "mobile_first": true,
+            "grid_columns": {
+                "mobile": 2,
+                "tablet": 3,
+                "desktop": 5
+            }
+        }
+    },
+    "technical_stack": {
+        "recommended": {
+            "frontend": "React.js with Vite or Next.js",
+            "styling": "Tailwind CSS or styled-components",
+            "animations": "Framer Motion",
+            "icons": "Lucide React or Heroicons",
+            "http_client": "Axios or Fetch API"
+        },
+        "alternative_simple": {
+            "frontend": "Vanilla HTML/CSS/JavaScript",
+            "styling": "Custom CSS with CSS Variables",
+            "note": "For simpler integration with existing Flask templates"
+        }
+    },
+    "api_integration": {
+        "movie_api": {
+            "endpoint": "POST /recommend",
+            "body": {
+                "current_watch": "string",
+                "history": "string (comma-separated)"
+            },
+            "response": {
+                "current_context": "array of movie objects (top 5)",
+                "history_based": "array of movie objects (next 5)"
+            }
+        },
+        "music_api": {
+            "endpoint": "POST /recommend_music",
+            "body": {
+                "current_track": "string",
+                "history": "string (comma-separated)"
+            },
+            "response": {
+                "similar_tracks": "array of song objects",
+                "input_track": "string",
+                "input_history": "array of strings"
+            }
+        },
+        "external_apis_for_enrichment": {
+            "movies": {
+                "TMDB": "https://api.themoviedb.org/3 - For posters, trailers, metadata",
+                "OMDB": "https://www.omdbapi.com - For IMDb ratings, plot"
+            },
+            "music": {
+                "Spotify": "Already integrated - artwork, links"
+            }
+        }
+    },
+    "deliverables": [
+        "Unified landing page with Movies/Music tabs",
+        "Netflix-style movie recommendation UI with poster images and trailers",
+        "Spotify-style music recommendation UI with album artwork",
+        "Responsive design for all screen sizes",
+        "Smooth animations and hover effects",
+        "Integration with existing Flask backend APIs",
+        "Loading states and error handling"
+    ],
+    "design_guidelines": {
+        "colors": {
+            "movies": {
+                "background": "#141414",
+                "card_bg": "#1f1f1f",
+                "accent": "#E50914",
+                "text_primary": "#ffffff",
+                "text_secondary": "#b3b3b3"
+            },
+            "music": {
+                "background": "#121212",
+                "card_bg": "#282828",
+                "accent": "#1DB954",
+                "text_primary": "#ffffff",
+                "text_secondary": "#b3b3b3"
+            }
+        },
+        "typography": {
+            "font_family": "Inter, -apple-system, BlinkMacSystemFont, sans-serif",
+            "headings": "Bold, larger sizes",
+            "body": "Regular weight, good line-height for readability"
+        },
+        "spacing": {
+            "base_unit": "8px",
+            "card_padding": "16px",
+            "section_gap": "32px"
+        }
+    },
+    "instructions_for_ai": "You are a professional full-stack developer specializing in Netflix and Spotify clone UIs. Create a unified, premium-looking frontend for an AI recommendation system. The interface should feel like a production-ready streaming platform. Prioritize visual appeal, smooth animations, and intuitive UX. Both movie and music sections must use the same 2-input form structure for consistency. Movies should have poster images and embedded trailers. Music should have album artwork and Spotify links. Use modern CSS techniques like CSS Grid, Flexbox, and CSS custom properties for theming."
+}
