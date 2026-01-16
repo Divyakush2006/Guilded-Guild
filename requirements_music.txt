@@ -1,0 +1,33 @@
+# Requirements for Pre-trained Music Recommendation System
+
+# Core dependencies (already installed)
+sentence-transformers>=2.2.0
+chromadb>=0.4.0
+pandas>=1.5.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+
+# Audio analysis models
+musicnn>=0.1.0  # Mood and audio feature extraction
+essentia-tensorflow>=2.1b6.dev1110  # Alternative audio analysis
+
+# Genre classification
+panns-inference>=0.1.0  # Pre-trained audio neural networks
+
+# Audio similarity (optional - Phase 3)
+laion-clap>=1.1.0  # Contrastive Language-Audio Pre-training
+
+# Audio processing
+librosa>=0.10.0  # Audio analysis utilities
+soundfile>=0.12.0  # Audio file I/O
+
+# Playback APIs (choose one or both)
+spotipy>=2.23.0  # Spotify API
+google-api-python-client>=2.100.0  # YouTube API
+
+# Flask (already installed)
+flask>=2.3.0
+
+# Existing dependencies
+torch>=2.0.0
+requests>=2.31.0
