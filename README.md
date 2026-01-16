@@ -600,4 +600,4 @@ For questions or support, please open an issue on GitHub.
 
 ---
 
-**Made with ❤️ using AI and Deep Learning**
+**Made using AI and Deep Learning**
