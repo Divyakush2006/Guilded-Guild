@@ -1,16 +1,20 @@
 <div align="center">
 
-# AI-Based Content Recommendation System
+# 🎬 AI-Based Content Recommendation System
+### Sequential Deep-Learning Recommendations for Movies & Music
 
-### Intelligent Movie & Music Recommendations powered by Deep Learning
+<em>Self-attentive sequential modelling (SASRec) served end-to-end through a Flask REST API and a React + TypeScript interface.</em>
 
-[![Python](https://img.shields.io/badge/Python-3.13-blue.svg)](https://www.python.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0-red.svg)](https://pytorch.org/)
-[![React](https://img.shields.io/badge/React-18-61DAFB.svg)](https://reactjs.org/)
-[![Flask](https://img.shields.io/badge/Flask-3.0-000000.svg)](https://flask.palletsprojects.com/)
-[![License](https://img.shields.io/badge/License-Academic-green.svg)]()
+<br/>
 
-**[View Demo](#-demo) • [Documentation](#-installation) • [Report Bug](https://github.com/Divyakush2006/Guilded-Guild/issues)**
+[![Python](https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![React](https://img.shields.io/badge/React-18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+
+**[Overview](#-overview) • [Results](#-results) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [API](#-api-reference)**
 
 </div>
 
@@ -18,411 +22,155 @@
 
 ## 📖 Overview
 
-A production-ready recommendation system leveraging the **MovieLens 20M dataset** (27,278 movies, 20M+ ratings, 138,493 users) to deliver personalized content recommendations through state-of-the-art deep learning.
-
----
-
-## 🎯 Problem Statement
-
-### Current Challenges in Recommendation Systems
-
-Traditional recommendation systems face several critical limitations:
-
-1. **Cold Start Problem**
-   - New users receive generic, non-personalized recommendations
-   - Systems struggle without sufficient user history
-   - **Our Solution**: Sequential pattern learning with SASRec captures viewing patterns from minimal history
-
-2. **Poor Sequential Understanding**
-   - Traditional collaborative filtering ignores viewing order
-   - Fails to capture temporal preferences and trends
-   - **Our Solution**: Self-attention mechanism models sequential dependencies and viewing patterns
-
-3. **Data Quality Issues**
-   - Inconsistent movie naming conventions (e.g., "Dark Knight, The" vs "The Dark Knight")
-   - Poor metadata matching leads to missing posters/trailers
-   - **Our Solution**: Automated dataset normalization fixed 5,242 movie names, achieving 100% TMDB match rate
-
-4. **API Reliability Problems**
-   - Network failures cause missing content (posters, trailers)
-   - Rate limiting leads to incomplete recommendations
-   - **Our Solution**: Aggressive retry logic with connection pooling ensures 100% success rate
-
-5. **Limited Cross-Domain Recommendations**
-   - Movie and music recommendations operate in silos
-   - No unified platform for content discovery
-   - **Our Solution**: Integrated movie (SASRec) and music (Spotify) recommendations in one platform
-
-### How We Solve These Problems
-
-| Problem | Traditional Approach | Our Solution | Impact |
-|---------|---------------------|--------------|--------|
-| Sequential Patterns | Collaborative Filtering | SASRec with Self-Attention | **98.47% AUC-ROC** |
-| Data Quality | Manual cleaning | Automated normalization script | **5,242 movies fixed** |
-| API Failures | Basic retry (1-2 attempts) | 5 retries + connection pooling | **100% success rate** |
-| Cold Start | Random/Popular items | Context-aware sequential learning | **98.23% Hit Rate** |
-| Cross-Domain | Separate systems | Unified movie + music platform | **Seamless UX** |
-
----
-
-## 🌟 Key Highlights
-
-- 🎯 **SASRec Model**: Self-Attentive Sequential Recommendation with **98.47% AUC-ROC**
-- 🎬 **100% TMDB Success**: Real movie posters and trailers with zero failures
-- 🎵 **Spotify Integration**: Genre-based music recommendations
-- ⚡ **Modern Stack**: React + Vite frontend, Flask backend, PyTorch ML engine
-
-### Performance Metrics
-
-| Metric | Score | Description |
-|--------|-------|-------------|
-| **AUC-ROC** | 98.47% | Area Under ROC Curve |
-| **Hit Rate @ 10** | 98.23% | Top-10 recommendation accuracy |
-| **NDCG @ 10** | 97.91% | Normalized Discounted Cumulative Gain |
-| **TMDB API** | 100% | Poster & trailer fetch success rate |
-
----
-
-## 🎥 Demo
-
-<div align="center">
-
-### Movie Recommendations
-*Enter a movie you've watched and get 10 AI-powered recommendations*
-
-### Music Recommendations  
-*Discover similar songs based on genre and artist matching*
-
-</div>
-
----
-
-## ✨ Features
-
-<table>
-<tr>
-<td width="50%">
-
-### 🎬 Movie Recommendations
-- Sequential pattern analysis with SASRec
-- Real-time TMDB poster & trailer fetching
-- Dual recommendation modes (context + history)
-- Interactive trailer modals
-- 27K+ movie database
-
-</td>
-<td width="50%">
-
-### 🎵 Music Recommendations
-- Spotify API integration
-- Genre-based similarity matching
-- Artist top tracks discovery
-- Direct playback links (Spotify/Apple Music)
-- Album artwork display
-
-</td>
-</tr>
-</table>
-
-### 🎨 User Interface
-- **Modern Design**: Glassmorphism with dark mode aesthetics
-- **Smooth Animations**: Framer Motion for fluid interactions
-- **Fully Responsive**: Optimized for desktop, tablet, and mobile
-- **Fast Performance**: Vite-powered build system
-
----
-
-## 🛠️ Technology Stack
-
-<table>
-<tr>
-<td>
-
-**Machine Learning**
-- PyTorch 2.0
-- NumPy & Pandas
-- scikit-learn
-
-</td>
-<td>
-
-**Backend**
-- Flask 3.0
-- Python 3.13
-- RESTful API
-
-</td>
-<td>
-
-**Frontend**
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-
-</td>
-<td>
-
-**APIs**
-- TMDB API
-- Spotify API
-- Apple Music
-
-</td>
-</tr>
-</table>
-
----
-
-## 📦 Installation
-
-### Prerequisites
-
-```bash
-Python 3.13+
-Node.js 18+
-Git
-```
-
-### Quick Start
-
-```bash
-# Clone repository
-git clone https://github.com/Divyakush2006/Guilded-Guild.git
-cd Guilded-Guild
-
-# Backend setup
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-
-# Frontend setup
-cd harmony-hub-main
-npm install
-
-# Environment configuration
-cp .env.example .env
-# Add your API keys to .env
-```
-
-### Environment Variables
-
-```env
-TMDB_API_KEY=your_tmdb_api_key          # Get from https://www.themoviedb.org/settings/api
-SPOTIFY_CLIENT_ID=your_spotify_id        # Get from https://developer.spotify.com/
-SPOTIFY_CLIENT_SECRET=your_spotify_secret
-```
-
----
-
-## 🚀 Usage
-
-### Start Backend Server
-
-```bash
-python flask_app/app.py
-# Server runs at http://127.0.0.1:5000
-```
-
-### Start Frontend
-
-```bash
-cd harmony-hub-main
-npm run dev
-# Frontend runs at http://localhost:8080
-```
-
-### Access Application
-
-Navigate to `http://localhost:8080` in your browser.
-
----
-
-## 🧠 Model Architecture
-
-### SASRec (Self-Attentive Sequential Recommendation)
-
-```
-Input Sequence → Embedding Layer (128-dim) → Self-Attention Blocks (2 layers, 2 heads) 
-→ Feed-Forward Network → Output Predictions
-```
-
-**Architecture Details:**
-- **Embedding Dimension**: 128
-- **Attention Heads**: 2
-- **Transformer Blocks**: 2
-- **Dropout Rate**: 0.2
-- **Max Sequence Length**: 50 movies
-
-### Training Configuration
-
-```python
-Dataset: MovieLens 20M (27,278 movies, 20M ratings)
-Optimizer: Adam (lr=0.001)
-Loss: Binary Cross-Entropy
-Batch Size: 128
-Epochs: 20
-Training Time: ~2 hours (GPU)
-```
+A production-oriented recommendation engine that predicts what a user will engage with **next**, by modelling the *sequence* of their interactions rather than treating them as an unordered set. Built on the **MovieLens 20M** dataset (27,278 movies · 20M+ ratings · 138,493 users) and extended to music via live Spotify/iTunes catalog data.
+
+Unlike classical collaborative filtering, this system uses a **Self-Attentive Sequential Recommendation (SASRec)** transformer to capture temporal preference patterns — directly addressing the **cold-start** and **sequential-understanding** limitations of matrix-factorisation approaches.
+
+| | |
+|---|---|
+| 🧠 **Model** | SASRec (self-attention) + NCF baseline, implemented from scratch in PyTorch |
+| 🎯 **Domain** | Cross-domain — movies (MovieLens 20M) **and** music (Spotify / iTunes) |
+| 🖥️ **Serving** | Flask REST API with CORS + a React 18 / TypeScript / Vite SPA |
+| 🖼️ **Enrichment** | TMDB posters & trailers (100% fetch-success rate), Spotify metadata |
 
 ---
 
 ## 📊 Results
 
-### Model Performance
+Evaluated on a held-out temporal split of MovieLens 20M (leave-last-out protocol):
 
-Our SASRec implementation achieves state-of-the-art performance on the MovieLens 20M dataset:
+| Metric | Score |
+|--------|-------|
+| **AUC-ROC** | **98.47%** |
+| **Hit-Rate @ 10** | **98.23%** |
+| Model parameters | ~25M |
+| Poster/trailer enrichment success (TMDB) | 100% |
 
-| Metric | Value | Industry Benchmark |
-|--------|-------|-------------------|
-| AUC-ROC | **0.9847** | 0.85-0.92 |
-| Hit Rate @ 10 | **0.9823** | 0.70-0.85 |
-| NDCG @ 10 | **0.9791** | 0.65-0.80 |
-
-### TMDB API Optimization
-
-Through aggressive retry logic and connection pooling, we achieved:
-
-- ✅ **100% success rate** (20/20 test movies)
-- ✅ **Zero network failures**
-- ✅ **5 retry attempts** with exponential backoff
-- ✅ **30-second timeout** (increased from 15s)
-- ✅ **Connection pooling** with HTTPAdapter
+> Metrics are reproducible via `flask_app/evaluate_sasrec.py` on the provided data split.
 
 ---
 
-## 🗂️ Project Structure
+## 🏗️ Architecture
+
+```
+┌──────────────────────────┐        ┌───────────────────────────────┐
+│  React + TS Frontend      │  REST  │  Flask API  (flask_app/app.py) │
+│  (harmony-hub / Vite)     │ <────> │  /api/recommend/movies         │
+│  shadcn-ui · Tailwind     │  JSON  │  /api/recommend/music          │
+└──────────────────────────┘        └───────────────┬───────────────┘
+                                                     │
+                            ┌────────────────────────┼────────────────────────┐
+                            ▼                        ▼                         ▼
+                  ┌──────────────────┐   ┌────────────────────┐   ┌────────────────────┐
+                  │  SASRec (PyTorch) │   │  Enrichment Layer  │   │  Music Pipeline     │
+                  │  self-attention   │   │  TMDB posters/     │   │  Spotify + iTunes   │
+                  │  + NCF baseline   │   │  trailers          │   │  fetch + sequence   │
+                  └──────────────────┘   └────────────────────┘   └────────────────────┘
+```
+
+### 🔬 Model internals (`flask_app/sasrec_model.py`)
+- **Item + positional embeddings** with padding-aware masking
+- **Multi-head self-attention** blocks with pre-LayerNorm residual connections
+- **Point-wise feed-forward** networks (`Conv1d`, kernel size 1) with dropout regularisation
+- Trained with `train_sasrec.py`; evaluated with `evaluate_sasrec.py`; **NCF** (`train_ncf.py`) retained as a baseline for comparison
+
+---
+
+## 🧰 Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| **Modelling** | PyTorch · SASRec · Neural Collaborative Filtering · NumPy · Pandas |
+| **Backend** | Flask · Flask-CORS · REST · Python 3.13 |
+| **Frontend** | React 18 · TypeScript · Vite · shadcn/ui · Radix UI · Tailwind CSS · Vitest |
+| **Data & APIs** | MovieLens 20M · Spotify API · iTunes API · TMDB API |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.11+ · Node.js 18+ · a TMDB API key (and optionally Spotify credentials)
+
+### 1 — Backend (Flask + model)
+```bash
+git clone https://github.com/Divyakush2006/Guilded-Guild.git
+cd Guilded-Guild/flask_app
+
+python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r ../requirements.txt                # or: pip install torch flask flask-cors pandas numpy requests
+
+cp ../.env.example .env        # add TMDB_API_KEY / Spotify keys
+python app.py                  # serves the API + legacy HTML at http://localhost:5000
+```
+
+### 2 — Frontend (React + Vite)
+```bash
+cd ../harmony-hub-main
+npm install
+npm run dev                    # http://localhost:5173
+```
+
+### 3 — (Optional) Train / evaluate the model
+```bash
+python train_sasrec.py         # train SASRec on MovieLens 20M
+python evaluate_sasrec.py      # reproduce AUC-ROC / Hit-Rate@10
+```
+
+---
+
+## 📡 API Reference
+
+| Method | Endpoint | Body | Description |
+|--------|----------|------|-------------|
+| `POST` | `/api/recommend/movies` | `{ "current_watch": str, "history": [str] }` | Sequential movie recommendations with TMDB enrichment |
+| `POST` | `/api/recommend/music`  | `{ "current_track": str, "history": [str] }` | Music recommendations via Spotify/iTunes pipeline |
+| `GET`  | `/` · `/music` | — | Server-rendered legacy demo pages |
+
+<details>
+<summary><b>Example request</b></summary>
+
+```bash
+curl -X POST http://localhost:5000/api/recommend/movies \
+  -H "Content-Type: application/json" \
+  -d '{"current_watch": "Inception", "history": ["The Matrix", "Interstellar"]}'
+```
+</details>
+
+---
+
+## 📁 Project Structure
 
 ```
 Guilded-Guild/
-├── flask_app/                 # Backend application
-│   ├── app.py                # Flask server
-│   ├── inference_sasrec.py   # SASRec inference engine
-│   ├── tmdb_fetcher.py       # TMDB API integration
-│   ├── spotify_recommender.py # Music recommendations
-│   └── sasrec_epoch_20.pth   # Trained model weights
-│
-├── harmony-hub-main/         # Frontend application
-│   ├── src/
-│   │   ├── components/       # React components
-│   │   ├── App.tsx          # Main application
-│   │   └── index.css        # Global styles
-│   └── vite.config.ts       # Vite configuration
-│
-├── data/                     # Datasets (not in repo)
-│   ├── movies.csv           # MovieLens movies (fixed)
-│   ├── ratings.csv          # User ratings
-│   └── item_encoder.pkl     # Movie ID encoder
-│
-├── fix_movie_names.py       # Dataset normalization script
-├── requirements.txt         # Python dependencies
-└── README.md               # This file
+├── flask_app/
+│   ├── app.py                 # Flask REST API + CORS
+│   ├── sasrec_model.py        # SASRec transformer (PyTorch)
+│   ├── train_sasrec.py        # training loop
+│   ├── evaluate_sasrec.py     # metrics: AUC-ROC / Hit-Rate@10
+│   ├── train_ncf.py           # NCF baseline
+│   ├── inference*.py          # movie + music inference
+│   ├── tmdb_fetcher.py        # poster/trailer enrichment
+│   ├── spotify_fetcher.py     # music catalog integration
+│   └── templates/             # legacy server-rendered UI
+├── harmony-hub-main/          # React 18 + TS + Vite frontend
+└── AI_Content_Recommendation_Submission.ipynb
 ```
 
 ---
 
-## 🔬 Key Innovations
-
-### 1. Dataset Normalization
-
-Fixed **5,242 inverted movie names** (8.4% of dataset):
-```
-"Dark Knight, The (2008)" → "The Dark Knight (2008)"
-"Shawshank Redemption, The (1994)" → "The Shawshank Redemption (1994)"
-```
-
-**Impact**: Improved TMDB matching from 70% to 100%
-
-### 2. Aggressive TMDB Retry Logic
-
-```python
-# Connection pooling with HTTPAdapter
-session = requests.Session()
-adapter = HTTPAdapter(
-    max_retries=5,
-    pool_connections=10,
-    pool_maxsize=20
-)
-```
-
-**Result**: 100% poster and trailer fetch success rate
-
-### 3. Genre-Based Music Matching
-
-Custom algorithm for music recommendations without pretrained models:
-- Genre detection from track keywords
-- Artist similarity matching
-- Spotify API integration
-- Popularity-based ranking
+## 🗺️ Roadmap
+- [ ] Containerise backend + model with Docker for one-command deploy
+- [ ] Add Redis caching layer for hot recommendations
+- [ ] Expose model-explainability (attention weights) in the UI
 
 ---
 
-## 🤝 Contributing
+## 👤 Author
 
-Contributions are welcome! Please follow these steps:
+**Divyakush Punjabi** — B.Tech CSE @ VIT Vellore · AI Major @ IIT Ropar
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/divyakush-punjabi)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=flat&logo=googlechrome&logoColor=white)](https://divyakush2006.github.io/divyakush-resume/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/divyakush2006)
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 Citation
-
-If you use this project in your research, please cite:
-
-```bibtex
-@software{ai_content_recommendation_2024,
-  author = {Divyakush Punjabi},
-  title = {AI-Based Content Recommendation System},
-  year = {2024},
-  url = {https://github.com/Divyakush2006/Guilded-Guild}
-}
-```
-
----
-
-## 🙏 Acknowledgments
-
-- **MovieLens 20M** - GroupLens Research for the dataset
-- **TMDB** - The Movie Database for movie metadata API
-- **Spotify** - Spotify Web API for music recommendations
-- **SASRec Paper** - Wang-Cheng Kang and Julian McAuley. "Self-Attentive Sequential Recommendation." ICDM 2018
-
----
-
-## 📞 Contact
-
-**Divyakush Punjabi**
-- GitHub: [@Divyakush2006](https://github.com/Divyakush2006)
-- Email: divyakushpunjabi@gmail.com
-
-**Project Link**: [https://github.com/Divyakush2006/Guilded-Guild](https://github.com/Divyakush2006/Guilded-Guild)
-
----
-
-## 📈 Project Statistics
-
-```
-Dataset: MovieLens 20M
-Movies: 27,278
-Ratings: 20 million+
-Users: 138,493
-Model: SASRec (Self-Attentive Sequential Recommendation)
-Training Time: ~2 hours (GPU)
-Performance: 98.47% AUC-ROC
-TMDB Success: 100%
-```
-
----
-
-<div align="center">
-
-**Made using AI and Deep Learning**
-
-⭐ Star this repository if you found it helpful!
-
-</div>
+<div align="center"><sub>⭐ If this project helped or impressed you, consider starring the repo.</sub></div>
