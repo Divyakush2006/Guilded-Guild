@@ -170,7 +170,7 @@ Guilded-Guild/
 
 **Divyakush Punjabi** — B.Tech CSE @ VIT Vellore · AI Major @ IIT Ropar
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/divyakush-punjabi)
-[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=flat&logo=googlechrome&logoColor=white)](https://divyakush.is-a.dev)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=flat&logo=googlechrome&logoColor=white)](https://www.divyakush.com)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/divyakush2006)
 
 <div align="center"><sub>⭐ If this project helped or impressed you, consider starring the repo.</sub></div>
