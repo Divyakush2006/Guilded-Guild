@@ -12,9 +12,14 @@
 [![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![React](https://img.shields.io/badge/React-18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![License: MIT](https://img.shields.io/github/license/Divyakush2006/Guilded-Guild?style=for-the-badge&color=blue)](LICENSE)
 
 **[Overview](#-overview) • [Results](#-results) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [API](#-api-reference)**
+
+[Project write-up](https://www.divyakush.com/projects/content-recommendation-engine) · [Report a bug](https://github.com/Divyakush2006/Guilded-Guild/issues/new/choose) · [Request a feature](https://github.com/Divyakush2006/Guilded-Guild/issues/new/choose)
+
+<img src="docs/images/home.png" alt="Guilded Guild movie discovery screen: current-watch and history inputs that feed the SASRec recommender" width="100%">
 
 </div>
 
@@ -90,7 +95,12 @@ Evaluated on a held-out temporal split of MovieLens 20M (leave-last-out protocol
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.11+ · Node.js 18+ · a TMDB API key (and optionally Spotify credentials)
+- Python 3.11+ and Node.js 18+
+- The [MovieLens 20M](https://grouplens.org/datasets/movielens/20m/) dataset: place `ratings.csv` and `movies.csv` in the repository root
+- Optional: a [TMDB API key](https://www.themoviedb.org/settings/api) for posters and trailers, and [Spotify credentials](https://developer.spotify.com/dashboard) for music recommendations. Without them the app still runs, with enrichment and music turned off.
+
+> [!NOTE]
+> The dataset, processed sequences and trained weights are not committed because of their size. Build them once (step 1); the API loads `flask_app/sasrec_epoch_20.pth` at start-up.
 
 ### 1 — Backend (Flask + model)
 ```bash
@@ -98,22 +108,29 @@ git clone https://github.com/Divyakush2006/Guilded-Guild.git
 cd Guilded-Guild/flask_app
 
 python -m venv venv && source venv/bin/activate   # Windows: venv\Scripts\activate
-pip install -r ../requirements.txt                # or: pip install torch flask flask-cors pandas numpy requests
+pip install torch flask flask-cors pandas numpy requests python-dotenv spotipy scikit-learn tqdm
 
-cp ../.env.example .env        # add TMDB_API_KEY / Spotify keys
-python app.py                  # serves the API + legacy HTML at http://localhost:5000
+cp ../.env.example .env        # fill in TMDB_API_KEY and, optionally, the Spotify keys
+
+# First run only: build training sequences, then train SASRec
+python data_sequencer.py       # writes processed_sequences.pkl and item_encoder.pkl
+python train_sasrec.py         # writes sasrec_epoch_20.pth
+
+python app.py                  # API and legacy HTML pages at http://localhost:5000
 ```
+
+`data_sequencer.py` reads `../ml-25m/ratings.csv` by default. If your ratings file is elsewhere (for example `../ratings.csv`), update the path in the `__main__` block at the bottom of the script.
 
 ### 2 — Frontend (React + Vite)
 ```bash
 cd ../harmony-hub-main
 npm install
-npm run dev                    # http://localhost:5173
+npm run dev                    # http://localhost:8080, with /api proxied to Flask on :5000
 ```
 
-### 3 — (Optional) Train / evaluate the model
+### 3 — (Optional) Evaluate the model
 ```bash
-python train_sasrec.py         # train SASRec on MovieLens 20M
+cd ../flask_app
 python evaluate_sasrec.py      # reproduce AUC-ROC / Hit-Rate@10
 ```
 
@@ -163,6 +180,20 @@ Guilded-Guild/
 - [ ] Containerise backend + model with Docker for one-command deploy
 - [ ] Add Redis caching layer for hot recommendations
 - [ ] Expose model-explainability (attention weights) in the UI
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Please read the [contributing guide](https://github.com/Divyakush2006/.github/blob/main/CONTRIBUTING.md) before opening a pull request.
+
+## 🔒 Security
+
+Please report vulnerabilities privately as described in the [security policy](https://github.com/Divyakush2006/.github/blob/main/SECURITY.md). Do not open a public issue.
+
+## 📄 License
+
+Released under the [MIT License](LICENSE).
 
 ---
 
